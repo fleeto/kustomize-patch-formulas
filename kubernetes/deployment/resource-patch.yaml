@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: $deployment_name
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: $container_name
+        resources:
+          requests:
+            memory: "$request_memory"
+            cpu: "$request_cpu"
+          limits:
+            memory: "$limit_memory"
+            cpu: "$limit_cpu"
