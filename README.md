@@ -1,2 +1,2 @@
 # kustomize-patch-formulas
-Reusable yaml snippet for Kustomize
+Reusable YAML snippet for Kustomize
