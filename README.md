@@ -1,8 +1,4 @@
-# Kustomize-patch-formulas
-
-Reusable YAML snippet for Kustomize
-
-![flow](images/flow1.png)
+项目地址 [Kustomize-patch-formulas](https://github.com/fleeto/kustomize-patch-formulas)
 
 这个项目有两个目的。
 
@@ -126,6 +122,14 @@ spec:
 
 可以看到，这里生成了完整的目标文件。
 
+有朋友问了，你这个模板填写也挺费劲阿，所以新增了个用法：
+
+~~~command
+./add_patch.py kubernetes/deployment/serviceaccount-patch.yaml
+Values in the patch:
+['$deployment_name', '$service_account']
+~~~
+
 ## 需要贡献
 
 这个项目还非常低级，不堪一用，觉得这个小东西有意思的朋友可以提供：
@@ -134,3 +138,5 @@ spec:
 - 测试框架。
 - 新的玩法。
 - 各种建议。
+
+加星星，加 Fork。。。还有英文翻译。

@@ -3,17 +3,19 @@ import argparse
 from string import Template
 import os
 import shutil
+import re
+import sys
 
 
 parser = argparse.ArgumentParser(description='Create patch')
 parser.add_argument('filename', type=str, help='A file name for patch template')
 parser.add_argument('--set', type=str, nargs='*', help='--set name1=value1 name2=value2')
-parser.add_argument('-t', '--target', type=str, help='Path name for output.', required=True)
+parser.add_argument('-t', '--target', type=str, help='Path name for output.')
 
 args = parser.parse_args()
 filename = args.filename
 set_list = args.set
-target_path = os.path.join(args.target, "overlay")
+
 
 values_map = {}
 
@@ -21,6 +23,23 @@ if set_list is not None:
     for line in set_list:
         pair = line.split("=")
         values_map[pair[0]] = pair[1]
+else:
+    regex = r"\$\w+"
+    var_list = []
+    print("Values in the patch:")
+    with open(filename) as fhandler:
+        for line in fhandler:
+            matches = re.findall(regex, line)
+            for word in matches:
+                if not word in var_list:
+                    var_list.append(word)
+        var_list.sort()
+        print(var_list)
+        sys.exit(0)
+        
+target_path = os.path.join(args.target, "overlay") 
+
+              
 
 tmpl = ""
 
