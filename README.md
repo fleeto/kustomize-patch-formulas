@@ -1,4 +1,5 @@
-项目地址 [Kustomize-patch-formulas](https://github.com/fleeto/kustomize-patch-formulas)
+
+![flow](images/flow1.png)
 
 这个项目有两个目的。
 
