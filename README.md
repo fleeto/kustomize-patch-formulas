@@ -20,7 +20,7 @@ Kustomize 能不能让这个过程舒服一点？
 例如我们有一个简单的 Deployment， `/tmp/deploy.yaml`：
 
 ~~~yaml
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flaskapp
@@ -74,7 +74,7 @@ $ ./add_patch.py kubernetes/deployment/serviceaccount-patch.yaml \
 这里的第一个参数是补丁文件的位置，`--set` 后面以 `key=value` 的形式为模板进行赋值。模板的写法也很简单，例如：
 
 ~~~yaml
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: $deployment_name
@@ -90,7 +90,7 @@ spec:
 加入补丁之后，使用 `kustomize build kust/overlay` 进行渲染：
 
 ~~~yaml
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flaskapp

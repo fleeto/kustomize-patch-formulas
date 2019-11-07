@@ -3,7 +3,5 @@ kind: Deployment
 metadata:
   name: $deployment_name
 spec:
-  replicas: 1
-  template:
-    spec:
-      serviceAccount: $service_account
+  nodeSelector:
+    $label: $value

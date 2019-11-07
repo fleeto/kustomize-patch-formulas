@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $deployment_name
+spec:
+  template:
+    metadata:
+      labels:
+        name: $deploy_name
+    spec:
+      containers:
+      - name: $container_name
+        $probe_type:
+          failureThreshold: 3
+          httpGet:
+            path: $probe_path
+            port: $probe_port
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1

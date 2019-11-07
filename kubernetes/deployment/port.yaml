@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: $deployment_name
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: $container_name
+        ports:
+        - containerPort: $port_number
+          name: $port_name
+          protocol: $protocol

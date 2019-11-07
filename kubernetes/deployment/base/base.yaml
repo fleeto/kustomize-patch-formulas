@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coredns
+spec:
+  selector:
+    matchLabels:
+      app: $deploy_name
+  template:
+    metadata:
+      labels:
+        app: $deploy_name
+    spec:
+      containers:
+      - image: $image_name
+        name: $container_name

@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: $deployment_name
 spec:
-  replicas: 1
   template:
     spec:
-      serviceAccount: $service_account
+      containers:
+      - image: $image_name
+        name: $container_name

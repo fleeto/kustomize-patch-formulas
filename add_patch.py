@@ -10,11 +10,13 @@ import sys
 parser = argparse.ArgumentParser(description='Create patch')
 parser.add_argument('filename', type=str, help='A file name for patch template')
 parser.add_argument('--set', type=str, nargs='*', help='--set name1=value1 name2=value2')
-parser.add_argument('-t', '--target', type=str, help='Path name for output.')
+parser.add_argument('-o', '--output', type=str, help='Path name for output.')
+parser.add_argument('-n', '--name', type=str, help='File name of the patch.', required=False)
 
 args = parser.parse_args()
 filename = args.filename
 set_list = args.set
+patch_name= args.name
 
 
 values_map = {}
@@ -37,7 +39,8 @@ else:
         print(var_list)
         sys.exit(0)
         
-target_path = os.path.join(args.target, "overlay") 
+target_path = os.path.join(args.output, "overlay") 
+
 
               
 
@@ -56,7 +59,7 @@ if not os.path.exists(target_yml):
     with open(target_yml, "w") as fhandler:
         fhandler.write("bases:\n- ../base\npatchesStrategicMerge:\n" )
 
-target_patch = os.path.join(target_path, os.path.basename(filename))
+target_patch = os.path.join(target_path, patch_name)
 with open(target_patch, "w") as patch_handler:
     patch_handler.writelines(tmpl.substitute(values_map))
     with open(target_yml, "a") as fhandler:

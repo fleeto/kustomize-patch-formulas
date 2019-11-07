@@ -6,4 +6,7 @@ spec:
   replicas: 1
   template:
     spec:
-      serviceAccount: $service_account
+      containers:
+      - name: $container_name
+        args: 
+        - $arg
